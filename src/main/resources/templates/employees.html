@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+
+<div class="page-header" layout:fragment="content" id="fh5co-page">
+    <div id="fh5co-main">
+        <div class="fh5co-more-contact">
+            <div class="fh5co-narrow-content">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="fh5co-feature fh5co-feature-sm animate-box" data-animate-effect="fadeInLeft">
+                            <div class="fh5co-icon">
+                                <i class="icon-globe"></i>
+                            </div>
+                            <div class="fh5co-text">
+                                <h3><a href="#">Компания</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="fh5co-feature fh5co-feature-sm animate-box" data-animate-effect="fadeInLeft">
+                            <div class="fh5co-icon">
+                                <i class="icon-map"></i>
+                            </div>
+                            <div class="fh5co-text">
+                                <h3>Сотрудники</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fh5co-narrow-content animate-box" data-animate-effect="fadeInLeft">
+
+                        <form class="form-group" th:action="@{https://google.com}">
+                            <input type="submit" class="btn btn-primary btn-md" value="+ Добавить сотрудника">
+                        </form>
+                        <div class="fh5co-narrow-content">
+                            <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Подразделения</h2>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Фамилия и Имя</th>
+                                    <th scope="col">Подразделение</th>
+                                    <th scope="col">Должность</th>
+                                    <th scope="col">Рабочий телефон</th>
+                                    <th scope="col"><img src="images/edit.png"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="employee: ${activeEmployees}">
+                                    <th scope="row" th:text="${employee.getId()}"></th>
+                                    <td th:text="${employee.getSurname() + ' ' + employee.getName()}"></td>
+                                    <td th:text="${employee.getDepartment()?.getTitle()}"></td>
+                                    <td th:text="${employee.getPosition()}"></td>
+                                    <td th:text="${employee.getPhoneNumber()}"></td>
+                                    <td><a><span>Редактировать</span></a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+
+<div class="page-header" layout:fragment="content" id="fh5co-page">
+    <div id="fh5co-main">
+        <div class="fh5co-more-contact">
+            <div class="fh5co-narrow-content">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="fh5co-feature fh5co-feature-sm animate-box" data-animate-effect="fadeInLeft">
+                            <div class="fh5co-icon">
+                                <i class="icon-globe"></i>
+                            </div>
+                            <div class="fh5co-text">
+                                <h3><a href="#">Компания</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="fh5co-feature fh5co-feature-sm animate-box" data-animate-effect="fadeInLeft">
+                            <div class="fh5co-icon">
+                                <i class="icon-map"></i>
+                            </div>
+                            <div class="fh5co-text">
+                                <h3>Сотрудники</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fh5co-narrow-content animate-box" data-animate-effect="fadeInLeft">
+
+                        <div class="fh5co-narrow-content">
+                            <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Подразделения</h2>
+                            <form class="form-group" th:action="@{https://google.com}">
+                                <input type="submit" class="btn btn-primary btn-md" value="Добавить подразделение">
+                            </form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="fh5co-feature animate-box" data-animate-effect="fadeInLeft">
+                                        <div class="fh5co-text">
+                                            <a class="company-structure-name">Бухгалтерия</a>
+                                            <div style="display: grid">
+                                                <p>Сотрудников: 6</p>
+                                                <ul>
+                                                    <li>Иванов Сергей</li>
+                                                    <li>Иванов Сергей</li>
+                                                    <li>Иванов Сергей</li>
+                                                </ul>
+                                                <a>все сотрудники...</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="fh5co-feature animate-box" data-animate-effect="fadeInLeft">
+                                        <div class="fh5co-text">
+                                            <a class="company-structure-name">Маркетинг</a>
+                                            <div style="display: grid">
+                                                <p>Сотрудников: 6</p>
+                                                <ul>
+                                                    <li>Иванов Сергей</li>
+                                                    <li>Иванов Сергей</li>
+                                                    <li>Иванов Сергей</li>
+                                                </ul>
+                                                <a>все сотрудники...</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="fh5co-feature animate-box" data-animate-effect="fadeInLeft">
+                                        <div class="fh5co-text">
+                                            <a class="company-structure-name">Отдел продаж</a>
+                                            <div style="display: grid">
+                                                <p>Сотрудников: 6</p>
+                                                <ul>
+                                                    <li>Иванов Сергей</li>
+                                                    <li>Иванов Сергей</li>
+                                                    <li>Иванов Сергей</li>
+                                                </ul>
+                                                <a>все сотрудники...</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
