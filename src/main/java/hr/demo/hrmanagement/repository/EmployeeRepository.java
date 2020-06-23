@@ -5,10 +5,7 @@ import hr.demo.hrmanagement.entity.type.EmployeeStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 public class EmployeeRepository {
@@ -34,9 +31,13 @@ public class EmployeeRepository {
                 departmentRepository.getById(2L), "Менеджер по продажам", "79164748923"));
         addEmployee(new Employee(id, "Павел", "Петров", EmployeeStatus.RECRUIT,
                 null, "", "79164265523"));
+        addEmployee(new Employee(id, "Ирина", "Матвеева", EmployeeStatus.ON_PROJECT,
+                departmentRepository.getById(3L), "Менеджер кадров", "79164265523"));
     }
 
-
+    public Employee getById(Long id) {
+         return employeeMap.get(id);
+    }
 
     public void addEmployee(Employee employee) {
         employeeMap.put(id, employee);
@@ -54,6 +55,10 @@ public class EmployeeRepository {
             }
         }
         return activeEmployees;
+    }
+
+    public List<Employee> getAll() {
+        return new ArrayList<>(employeeMap.values());
     }
 
 }

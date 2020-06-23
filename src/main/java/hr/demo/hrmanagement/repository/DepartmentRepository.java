@@ -17,6 +17,7 @@ public class DepartmentRepository {
         addDepartment(new Department(id, "Бухгалтерия", new ArrayList<>()));
         addDepartment(new Department(id, "Маркетинг", new ArrayList<>()));
         addDepartment(new Department(id, "Отдел продаж", new ArrayList<>()));
+        addDepartment(new Department(id, "Отдел кадров", new ArrayList<>()));
     }
 
     public Department getById(Long depId) {

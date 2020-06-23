@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+
+<div class="page-header" layout:fragment="content" id="fh5co-page">
+    <div id="fh5co-main">
+        <div class="fh5co-more-contact">
+            <div class="fh5co-narrow-content">
+                <div class="row">
+                    <div class="fh5co-narrow-content animate-box" data-animate-effect="fadeInLeft">
+
+                        <div class="fh5co-narrow-content">
+                            <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Заявки</h2>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Фамилия и Имя</th>
+                                    <th scope="col">Рабочий телефон</th>
+                                    <th scope="col"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="employee: ${recruits}">
+                                    <td scope="row" th:text="${employee.getId()}"></td>
+                                    <td th:text="${employee.getSurname() + ' ' + employee.getName()}"></td>
+                                    <td th:text="${employee.getPhoneNumber()}"></td>
+                                    <td th:switch="${employee.getStatus().name()}">
+                                        <input th:case="${'RECRUIT'}" type="submit" class="btn btn-primary btn-md" value="Назначить собеседование" style="font-size: 10px;">
+                                        <input th:case="${'INACTIVE'}" type="submit" class="btn btn-primary btn-md" value="Назначить на проект" style="font-size: 10px;">
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

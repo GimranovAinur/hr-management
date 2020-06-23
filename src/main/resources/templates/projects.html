@@ -14,7 +14,7 @@
                                 <i class="icon-globe"></i>
                             </div>
                             <div class="fh5co-text">
-                                <h3><a href="#">Компания</a></h3>
+                                <h3><a href="#">Задачи</a></h3>
                             </div>
                         </div>
                     </div>
@@ -24,7 +24,7 @@
                                 <i class="icon-map"></i>
                             </div>
                             <div class="fh5co-text">
-                                <h3>Сотрудники</h3>
+                                <h3>Проекты</h3>
                             </div>
                         </div>
                     </div>
@@ -41,12 +41,12 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <input type="submit" class="btn btn-primary btn-md" value="Найти сотрудника">
+                                                <input type="submit" class="btn btn-primary btn-md" value="Найти проект">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <input type="submit" class="btn btn-primary btn-md" value="+ Добавить сотрудника">
+                                                <input type="submit" class="btn btn-primary btn-md" value="+ Добавить проект">
                                             </div>
                                         </div>
                                     </div>
@@ -61,21 +61,23 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Фамилия и Имя</th>
-                                    <th scope="col">Подразделение</th>
-                                    <th scope="col">Должность</th>
-                                    <th scope="col">Рабочий телефон</th>
-                                    <th scope="col"><img src="images/edit.png"></th>
+                                    <th scope="col">Проекты</th>
+                                    <th scope="col">Дата старта</th>
+                                    <th scope="col">Дата окончания</th>
+                                    <th scope="col">Задач в работе</th>
+                                    <th scope="col">Выполнено</th>
+                                    <th scope="col">Всего задач</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="employee: ${activeEmployees}">
-                                    <th scope="row" th:text="${employee.getId()}"></th>
-                                    <td th:text="${employee.getSurname() + ' ' + employee.getName()}"></td>
-                                    <td th:text="${employee.getDepartment()?.getTitle()}"></td>
-                                    <td th:text="${employee.getPosition()}"></td>
-                                    <td th:text="${employee.getPhoneNumber()}"></td>
-                                    <td><a><span>Редактировать</span></a></td>
+                                <tr th:each="project: ${projects}">
+                                    <th scope="row" th:text="${project.getId()}"></th>
+                                    <td th:text="${project.getTitle()}"></td>
+                                    <td th:text="${project.getStartDate()}"></td>
+                                    <td th:text="${project.getEndDate()}"></td>
+                                    <td th:text="${tasksInProgress.get(project.getId()).size()}"></td>
+                                    <td th:text="${tasksDone.get(project.getId()).size()}"></td>
+                                    <td th:text="${tasksMap.get(project.getId()).size()}"></td>
                                 </tr>
                                 </tbody>
                             </table>

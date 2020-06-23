@@ -21,4 +21,10 @@ public class EmployeeController {
         return "employees";
     }
 
+    @GetMapping("/recruitment")
+    public String recruitmentPage(Model model) {
+        model.addAttribute("recruits", employeeService.getRecruits());
+        return "recruitment";
+    }
+
 }
