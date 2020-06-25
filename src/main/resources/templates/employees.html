@@ -14,7 +14,7 @@
                                 <i class="icon-globe"></i>
                             </div>
                             <div class="fh5co-text">
-                                <h3><a href="#">Компания</a></h3>
+                                <h3><a th:href="@{/departments}">Компания</a></h3>
                             </div>
                         </div>
                     </div>
@@ -29,31 +29,58 @@
                         </div>
                     </div>
                     <div class="fh5co-narrow-content animate-box" data-animate-effect="fadeInLeft">
-
-                        <form action="">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Поиск">
-                                            </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Поиск">
                                         </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <input type="submit" class="btn btn-primary btn-md" value="Найти сотрудника">
-                                            </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <input type="submit" class="btn btn-primary btn-md" value="Найти сотрудника">
                                         </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <input type="submit" class="btn btn-primary btn-md" value="+ Добавить сотрудника">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#addEmployeeModal">+ Добавить сотрудника в отдел</button>
+                                        </div>
+                                    </div>
+                                    <div class="modal fade" id="addEmployeeModal" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <h3>Добавить сотрудника</h3>
+                                                    <form class="form-horizontal" th:action="@{'/departments/' + ${departmentId} + '/add_employees'}" method="post">
+                                                        <table class="table">
+                                                            <thead>
+                                                            <tr>
+                                                                <th scope="col">#</th>
+                                                                <th scope="col">Фамилия и Имя</th>
+                                                                <th scope="col">Должность</th>
+                                                                <th scope="col">Рабочий телефон</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr th:each="employee: ${freeEmployees}">
+                                                                <td><input type="checkbox" name="employeesToAdd" th:value="${employee.getId()}"></td>
+                                                                <td th:text="${employee.getSurname() + ' ' + employee.getName()}"></td>
+                                                                <td th:text="${employee.getPosition()}"></td>
+                                                                <td th:text="${employee.getPhoneNumber()}"></td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <input type="submit" class="btn btn-primary btn-md" value="Добавить">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-                        </form>
+                        </div>
 
                         <div class="fh5co-narrow-content">
                             <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Сотрудники</h2>
@@ -65,7 +92,7 @@
                                     <th scope="col">Подразделение</th>
                                     <th scope="col">Должность</th>
                                     <th scope="col">Рабочий телефон</th>
-                                    <th scope="col"><img src="images/edit.png"></th>
+                                    <th scope="col"><img th:src="@{/images/edit.png}"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -75,7 +102,7 @@
                                     <td th:text="${employee.getDepartment()?.getTitle()}"></td>
                                     <td th:text="${employee.getPosition()}"></td>
                                     <td th:text="${employee.getPhoneNumber()}"></td>
-                                    <td><a><span>Редактировать</span></a></td>
+                                    <td><a th:href="@{'/edit_employee/' + ${employee.getId()}}"><span>Редактировать</span></a></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -86,3 +113,4 @@
         </div>
     </div>
 </div>
+</html>

@@ -1,13 +1,11 @@
 package hr.demo.hrmanagement.entity;
 
 import hr.demo.hrmanagement.entity.type.EmployeeStatus;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Employee {
 
     private Long id;
@@ -25,6 +23,12 @@ public class Employee {
 
     private String phoneNumber;
 
+    private String passport;
 
+    private String INN;
+
+    private String education;
+
+    private String snils;
 
 }

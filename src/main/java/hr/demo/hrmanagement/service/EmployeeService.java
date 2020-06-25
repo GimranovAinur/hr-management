@@ -30,4 +30,23 @@ public class EmployeeService {
         }
         return recruits;
     }
+
+    public List<Employee> getFreeEmployees() {
+        return employeeRepository.getFreeEmployees();
+    }
+
+    public Long updateEmployee(Employee employee) {
+        Employee employeeToEdit = employeeRepository.getById(employee.getId());
+        employeeToEdit.setEducation(employee.getEducation());
+        employeeToEdit.setINN(employee.getINN());
+        employeeToEdit.setName(employee.getName());
+        employeeToEdit.setSurname(employee.getSurname());
+        employeeToEdit.setPassport(employee.getPassport());
+        employeeToEdit.setPhoneNumber(employee.getPhoneNumber());
+        employeeToEdit.setPosition(employee.getPosition());
+        employeeToEdit.setSnils(employee.getSnils());
+
+        return employeeToEdit.getDepartment().getId();
+    }
+
 }

@@ -4,16 +4,16 @@
 <header th:fragment="sideMenu">
 
     <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-    <aside id="fh5co-aside" role="complementary" class="border js-fullheight">
+    <aside id="fh5co-aside" role="complementary" class="border js-fullheight" style="overflow: hidden;">
 
-        <h1 id="fh5co-logo"><a href="index.html">Demo</a></h1>
+        <h1 id="fh5co-logo"><a th:href="@{/}">Demo</a></h1>
         <nav id="fh5co-main-menu" role="navigation">
             <ul>
-                <li th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'fh4co-active' : ''}"><a th:href="@{/}">Главная</a></li>
-                <li th:classappend="${#httpServletRequest.getRequestURI() == '/employees' ? 'fh4co-active' : ''}"><a th:href="@{/employees}">Сотрудники</a></li>
-                <li th:classappend="${#httpServletRequest.getRequestURI() == '/recruitment' ? 'fh4co-active' : ''}"><a th:href="@{/recruitment}" >Заявки на приём</a></li>
-                <li th:classappend="${#httpServletRequest.getRequestURI() == '/tasks' || #httpServletRequest.getRequestURI() == '/projects' ? 'fh4co-active' : ''}"><a th:href="@{/tasks}" >Задачи и проекты</a></li>
-                <li th:classappend="${#httpServletRequest.getRequestURI() == '/chat' ? 'fh4co-active' : ''}"><a th:href="@{/chat}" >Чат и звонки</a></li>
+                <li th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'fh5co-active' : ''}"><a th:href="@{/}">Главная</a></li>
+                <li th:classappend="${#httpServletRequest.getRequestURI() == '/departments' ? 'fh5co-active' : ''}"><a th:href="@{/departments}">Компания</a></li>
+                <li th:classappend="${#httpServletRequest.getRequestURI() == '/recruitment' ? 'fh5co-active' : ''}"><a th:href="@{/recruitment}" >Заявки на приём</a></li>
+                <li th:classappend="${#httpServletRequest.getRequestURI() == '/tasks' || #httpServletRequest.getRequestURI() == '/projects' ? 'fh5co-active' : ''}"><a th:href="@{/tasks}" >Задачи и проекты</a></li>
+                <li th:classappend="${#httpServletRequest.getRequestURI() == '/chat' ? 'fh5co-active' : ''}"><a th:href="@{/chat}" >Чат и звонки</a></li>
             </ul>
         </nav>
 

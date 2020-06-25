@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+
+<div class="page-header" layout:fragment="content" id="fh5co-page">
+    <div id="fh5co-main">
+        <div class="fh5co-narrow-content">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="fh5co-feature fh5co-feature-sm animate-box" data-animate-effect="fadeInLeft">
+                        <div class="fh5co-icon">
+                            <i class="icon-globe"></i>
+                        </div>
+                        <div class="fh5co-text">
+                            <h3>Компания</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="fh5co-feature fh5co-feature-sm animate-box" data-animate-effect="fadeInLeft">
+                        <div class="fh5co-icon">
+                            <i class="icon-map"></i>
+                        </div>
+                        <div class="fh5co-text">
+                            <h3><a th:href="@{/employees}">Сотрудники</a></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="fh5co-narrow-content animate-box" data-animate-effect="fadeInLeft">
+                    <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Отделы</h2>
+                    <div class="row row-bottom-padded-md">
+                        <div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft" th:each="department : ${departments}">
+                            <div class="blog-entry">
+                                <div class="desc">
+                                    <h3><a th:href="@{'/departments/' + ${department.getId()} + '/employees'}" th:text="${department.getTitle()}" style="color: #228896; font-size: 22px;"></a></h3>
+                                    <th:block th:each="employee, iterStat: ${department.getEmployeeList()}" th:if="${iterStat.index} < 5">
+                                        <p th:text="${iterStat.index + 1} + '. ' + ${employee.getSurname()} + ' ' + ${employee.getName()}" style="color: black;"></p>
+                                    </th:block>
+                                    <a th:href="@{'/departments/' + ${department.getId()} + '/employees'}" class="lead">Все сотрудники <i class="icon-arrow-right3"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</html>

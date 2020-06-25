@@ -20,19 +20,29 @@ public class EmployeeRepository {
     public EmployeeRepository(DepartmentRepository departmentRepository) {
         this.departmentRepository = departmentRepository;
         addEmployee(new Employee(id, "Иван", "Сергеев", EmployeeStatus.ON_PROJECT,
-                departmentRepository.getById(0L), "Старший бухгалтер", "79164264433"));
+                departmentRepository.getById(0L), "Старший бухгалтер", "79164264433",
+                "9203 472783", "644909589022", "КГАСУ Кафедра экономики и предпринимательства в строительстве", "956 454 265 49"));
         addEmployee(new Employee(id, "Никита", "Смирнов", EmployeeStatus.ON_PROJECT,
-                departmentRepository.getById(1L), "Начальник отдела маркетинга", "79164262212"));
+                departmentRepository.getById(1L), "Начальник отдела маркетинга", "79164262212",
+                "9203 472783", "644909589022", "КГАСУ Кафедра экономики и предпринимательства в строительстве", "956 454 265 49"));
         addEmployee(new Employee(id, "Ирина", "Иванова", EmployeeStatus.INACTIVE,
-                null, "Дизайнер", "79164234338"));
+                null, "Дизайнер", "79164234338",
+                "9203 472783", "644909589022", "КГАСУ Кафедра экономики и предпринимательства в строительстве", "956 454 265 49"));
+        addEmployee(new Employee(id, "Константин", "Шилов", EmployeeStatus.INACTIVE,
+                null, "Маркетолог", "79164264368",
+                "9203 472783", "644909589022", "КГАСУ Кафедра экономики и предпринимательства в строительстве", "956 454 265 49"));
         addEmployee(new Employee(id, "Андрей", "Саенко", EmployeeStatus.ON_PROJECT,
-                departmentRepository.getById(0L), "Бухгалтер", "79164264567"));
+                departmentRepository.getById(0L), "Бухгалтер", "79164264567",
+                "9203 472783", "644909589022", "КГАСУ Кафедра экономики и предпринимательства в строительстве", "956 454 265 49"));
         addEmployee(new Employee(id, "Галина", "Степаненко", EmployeeStatus.ON_PROJECT,
-                departmentRepository.getById(2L), "Менеджер по продажам", "79164748923"));
+                departmentRepository.getById(2L), "Менеджер по продажам", "79164748923",
+                "9203 472783", "644909589022", "КГАСУ Кафедра экономики и предпринимательства в строительстве", "956 454 265 49"));
         addEmployee(new Employee(id, "Павел", "Петров", EmployeeStatus.RECRUIT,
-                null, "", "79164265523"));
+                null, "", "79164265523",
+                "9203 472783", "644909589022", "КГАСУ Кафедра экономики и предпринимательства в строительстве", "956 454 265 49"));
         addEmployee(new Employee(id, "Ирина", "Матвеева", EmployeeStatus.ON_PROJECT,
-                departmentRepository.getById(3L), "Менеджер кадров", "79164265523"));
+                departmentRepository.getById(3L), "Менеджер кадров", "79164265523",
+                "9203 472783", "644909589022", "КГАСУ Кафедра экономики и предпринимательства в строительстве", "956 454 265 49"));
     }
 
     public Employee getById(Long id) {
@@ -40,6 +50,9 @@ public class EmployeeRepository {
     }
 
     public void addEmployee(Employee employee) {
+        if(employee.getId() == null) {
+            employee.setId(id);
+        }
         employeeMap.put(id, employee);
         if(employee.getDepartment() != null) {
             departmentRepository.addEmployeeToDepartment(employee.getDepartment().getId(), employee);
@@ -55,6 +68,16 @@ public class EmployeeRepository {
             }
         }
         return activeEmployees;
+    }
+
+    public List<Employee> getFreeEmployees() {
+        List<Employee> result = new ArrayList<>();
+        for(Employee employee : employeeMap.values()) {
+            if(employee.getStatus() == EmployeeStatus.INACTIVE) {
+                result.add(employee);
+            }
+        }
+        return result;
     }
 
     public List<Employee> getAll() {

@@ -2,6 +2,7 @@ package hr.demo.hrmanagement.repository;
 
 import hr.demo.hrmanagement.entity.Department;
 import hr.demo.hrmanagement.entity.Employee;
+import hr.demo.hrmanagement.entity.type.EmployeeStatus;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
@@ -38,8 +39,21 @@ public class DepartmentRepository {
         }
     }
 
+    public void addEmployeesToDepartment(Long depId, List<Employee> employees) {
+        if(depId != null) {
+            Department department = departmentMap.get(depId);
+            if(department != null) {
+                for(Employee employee : employees) {
+                    employee.setDepartment(department);
+                    addEmployeeToDepartment(depId, employee);
+                    employee.setStatus(EmployeeStatus.ON_PROJECT);
+                }
+            }
+        }
+    }
+
     public List<Department> getAll() {
-        return (List<Department>) departmentMap.values();
+        return new ArrayList<>(departmentMap.values());
     }
 
 }
