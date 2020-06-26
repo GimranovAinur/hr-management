@@ -7,6 +7,7 @@ import hr.demo.hrmanagement.entity.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Repository
@@ -21,11 +22,17 @@ public class ProjectRepository {
     @Autowired
     public ProjectRepository(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
-        addProject(new Project(id, "Бухгалтерский учет", new Date(), new Date(), new ArrayList<>()));
-        addProject(new Project(id, "Рекрут", new Date(), new Date(), new ArrayList<>()));
+        addProject(new Project(id, "Бухгалтерский учет", " ", LocalDateTime.now(), LocalDateTime.now(), new ArrayList<>()));
+        addProject(new Project(id, "Рекрут", " ", LocalDateTime.now(), LocalDateTime.now(), new ArrayList<>()));
     }
 
     public void addProject(Project project) {
+        if(project.getId() == null) {
+            project.setId(id);
+        }
+        if(project.getTaskList() == null) {
+            project.setTaskList(new ArrayList<>());
+        }
         projectMap.put(id, project);
         id++;
     }

@@ -41,7 +41,31 @@
                                     <td th:text="${employee.getSurname() + ' ' + employee.getName()}"></td>
                                     <td th:text="${employee.getPhoneNumber()}"></td>
                                     <td th:switch="${employee.getStatus().name()}">
-                                        <input th:case="${'INACTIVE'}" type="submit" class="btn btn-primary btn-md" value="Назначить на проект" style="font-size: 10px;">
+                                        <button th:case="${'INACTIVE'}" type="submit" class="open-dialog btn btn-primary btn-md" th:data-id="${employee.getId()}" data-toggle="modal" data-target="#addEmployeeModal" style="font-size: 10px;">Назначить в отдел</button>
+                                        <div class="modal fade" id="addEmployeeModal" role="dialog">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+                                                        <h3>Назначение в отдел</h3>
+                                                        <form class="form-horizontal" th:action="@{'/add_to_project'}" method="post">
+                                                            <div class="form-group" style="margin: 10px;">
+                                                                <label for="project">Отдел</label>
+                                                                <select id="project" class="form-control" th:name="projectId">
+                                                                    <option value="">Выберите отдел</option>
+                                                                    <option th:each="project : ${projects}"
+                                                                            th:value="${project.getId()}"
+                                                                            th:text="${project.getTitle()}"></option>
+                                                                </select>
+                                                                <input type="hidden" th:id="employeeToAdd" th:name="employeeToAdd"/>
+                                                            </div>
+
+                                                            <input type="submit" class="btn btn-primary btn-md" value="Добавить">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <a th:case="${'RECRUIT'}" th:href="@{'/interview/' + ${employee.getId()}}" class="btn btn-primary btn-md" style="font-size: 10px;">Назначить собеседование</a>
                                     </td>
                                 </tr>

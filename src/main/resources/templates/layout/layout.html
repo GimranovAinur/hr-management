@@ -66,6 +66,16 @@
 
         <!-- MAIN JS -->
         <script th:src="@{/js/main.js}"></script>
+
+        <script>
+            $(document).on("click", ".open-dialog", function () {
+                var myBookId = $(this).data('id');
+                $("#employeeToAdd").val( myBookId );
+            });
+            function goBack() {
+                window.history.back();
+            }
+        </script>
     </body>
 
 </html>

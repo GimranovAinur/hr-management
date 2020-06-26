@@ -29,34 +29,83 @@
                         </div>
                     </div>
                     <div class="fh5co-narrow-content animate-box" data-animate-effect="fadeInLeft">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Поиск">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <input type="submit" class="btn btn-primary btn-md" value="Найти задачу">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#addEmployeeModal">+ Добавить задачу</button>
+                                        </div>
+                                    </div>
+                                    <div class="modal fade" id="addEmployeeModal" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <h3>Добавление задачи</h3>
+                                                    <form class="form-horizontal" th:object="${newTask}" th:action="@{/new_task}" method="post">
+                                                        <div class="row" >
+                                                            <div class="col-md-12">
+                                                                <div class="col-md-12">
+                                                                    <div class="col-md-12">
+                                                                        <h4>Основная информация</h4>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="title">Наименование</label>
+                                                                        <input id="title" type="text" th:field="*{title}" class="form-control" placeholder="Наименование">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="desc">Описание</label>
+                                                                        <textarea id="desc" th:field="*{description}" class="form-control" placeholder="Описание"></textarea>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="end">Дедлайн</label>
+                                                                        <input id="end" type="datetime-local" th:field="*{endDate}" class="form-control" placeholder="Дата окончания">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="project">Проект</label>
+                                                                        <select id="project" th:field="*{project}" class="form-control">
+                                                                            <option value="">Выберите проект</option>
+                                                                            <option th:each="project : ${projects}"
+                                                                                    th:value="${project.getId()}"
+                                                                                    th:text="${project.getTitle()}"></option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="executor">Исполнитель</label>
+                                                                        <select id="executor" th:field="*{executor}"  class="form-control">
+                                                                            <option value="">Выберите исполнителя</option>
+                                                                            <option th:each="executor : ${executors}"
+                                                                                    th:value="${executor.getId()}"
+                                                                                    th:text="${executor.getSurname()} + ' ' + ${executor.getName()}"></option>
+                                                                        </select>
+                                                                    </div>
 
-                        <form action="">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Поиск">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <input type="submit" class="btn btn-primary btn-md" value="Найти задачу">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <input type="submit" class="btn btn-primary btn-md" value="+ Добавить задачу">
+                                                                    <input type="submit" class="btn btn-primary btn-md" value="Добавить">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-                        </form>
+                        </div>
 
                         <div class="fh5co-narrow-content">
-                            <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Сотрудники</h2>
+                            <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Задачи</h2>
                             <table class="table">
                                 <thead>
                                 <tr>

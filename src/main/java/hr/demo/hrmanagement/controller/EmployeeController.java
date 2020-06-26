@@ -1,8 +1,12 @@
 package hr.demo.hrmanagement.controller;
 
+import hr.demo.hrmanagement.entity.Department;
 import hr.demo.hrmanagement.entity.Employee;
+import hr.demo.hrmanagement.entity.Project;
 import hr.demo.hrmanagement.entity.type.EmployeeStatus;
+import hr.demo.hrmanagement.repository.DepartmentRepository;
 import hr.demo.hrmanagement.repository.EmployeeRepository;
+import hr.demo.hrmanagement.repository.ProjectRepository;
 import hr.demo.hrmanagement.service.DepartmentService;
 import hr.demo.hrmanagement.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +24,9 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
+    @Autowired
+    private DepartmentRepository departmentRepository;
+
     @GetMapping("/employees")
     public String activeEmployeeList(Model model) {
         model.addAttribute("activeEmployees", employeeService.getActiveEmployeeList());
@@ -30,6 +37,7 @@ public class EmployeeController {
     @GetMapping("/recruitment")
     public String recruitmentPage(Model model) {
         model.addAttribute("recruits", employeeService.getRecruits());
+        model.addAttribute("projects", departmentRepository.getAll());
         return "recruitment";
     }
 
@@ -66,6 +74,20 @@ public class EmployeeController {
         Long depId = employeeService.updateEmployee(employee);
 
         return "redirect:/departments/" + depId + "/employees";
+    }
+
+    @PostMapping("/add_to_project")
+    public String addToProject(@RequestParam Long projectId,
+                               @RequestParam Long employeeToAdd) {
+
+        Employee employee = employeeRepository.getById(employeeToAdd);
+        Department department = departmentRepository.getById(projectId);
+
+        employee.setDepartment(department);
+        employee.setStatus(EmployeeStatus.ON_PROJECT);
+        department.addEmployee(employee);
+
+        return "redirect:/recruitment";
     }
 
 }

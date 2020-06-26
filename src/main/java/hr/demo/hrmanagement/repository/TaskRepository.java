@@ -6,6 +6,7 @@ import hr.demo.hrmanagement.entity.type.TaskStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Repository
@@ -23,21 +24,24 @@ public class TaskRepository {
     public TaskRepository(EmployeeRepository employeeRepo, ProjectRepository projectRepository) {
         this.employeeRepository = employeeRepo;
         this.projectRepository = projectRepository;
-        addTask(new Task(id, "Заполнить документацию",
-                new Date(), employeeRepository.getById(0L),
+        addTask(new Task(id, "Заполнить документацию", "Нужно заполнить документацию",
+                LocalDateTime.now(), employeeRepository.getById(0L),
                 employeeRepository.getById(3L), projectRepository.getById(0L), TaskStatus.IN_PROGRESS));
-        addTask(new Task(id, "Провести учет",
-                new Date(), employeeRepository.getById(0L),
+        addTask(new Task(id, "Провести учет", "",
+                LocalDateTime.now(), employeeRepository.getById(0L),
                 employeeRepository.getById(3L), projectRepository.getById(0L), TaskStatus.DONE));
-        addTask(new Task(id, "Найти новых сотрудников",
-                new Date(), employeeRepository.getById(3L),
+        addTask(new Task(id, "Найти новых сотрудников","",
+                LocalDateTime.now(), employeeRepository.getById(3L),
                 employeeRepository.getById(6L), projectRepository.getById(1L), TaskStatus.IN_PROGRESS));
-        addTask(new Task(id, "Провести собеседования",
-                new Date(), employeeRepository.getById(2L),
+        addTask(new Task(id, "Провести собеседования", "",
+                LocalDateTime.now(), employeeRepository.getById(2L),
                 employeeRepository.getById(6L), projectRepository.getById(1L), TaskStatus.IN_PROGRESS));
     }
 
     public void addTask(Task task) {
+        if(task.getId() == null) {
+            task.setId(id);
+        }
         taskMap.put(id, task);
         if(task.getProject() != null) {
             projectRepository.addProjectTask(task.getProject().getId(), task);
