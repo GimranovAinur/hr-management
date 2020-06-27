@@ -17,35 +17,44 @@
                                         <h4>Основная информация</h4>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" th:field="*{name}" class="form-control" placeholder="Имя">
+                                        <label for="name">Имя</label>
+                                        <input id="name" type="text" th:field="*{name}" class="form-control" placeholder="Имя">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" th:field="*{surname}" class="form-control" placeholder="Фамилия">
+                                        <label for="surname">Фамилия</label>
+                                        <input id="surname" type="text" th:field="*{surname}" class="form-control" placeholder="Фамилия">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" th:field="*{phoneNumber}" class="form-control" placeholder="Номер рабочего телефона">
+                                        <label for="phone">Номер телефона</label>
+                                        <input id="phone" type="text" th:field="*{phoneNumber}" class="form-control" placeholder="Номер рабочего телефона">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" th:field="*{position}" class="form-control" placeholder="Должность">
+                                        <label for="pos">Должность</label>
+                                        <input id="pos" type="text" th:field="*{position}" class="form-control" placeholder="Должность">
                                     </div>
                                     <div class="col-md-12">
                                         <h4>Личная информация</h4>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" th:field="*{passport}" class="form-control" placeholder="Серия и номер паспорта">
+                                        <label for="passport">Серия и номер пасспорта</label>
+                                        <input id="passport" type="text" th:field="*{passport}" class="form-control" placeholder="Серия и номер паспорта">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" th:field="*{INN}" class="form-control" placeholder="ИНН">
+                                        <label for="inn">Номер ИНН</label>
+                                        <input id="inn" type="text" th:field="*{INN}" class="form-control" placeholder="ИНН">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" th:field="*{snils}" class="form-control" placeholder="Номер СНИЛС">
+                                        <label for="snils">Номер СНИЛС</label>
+                                        <input id="snils" type="text" th:field="*{snils}" class="form-control" placeholder="Номер СНИЛС">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" th:field="*{education}" class="form-control" placeholder="Сведения об образовании">
+                                        <label for="education">Информация об образовании</label>
+                                        <input id="education" type="text" th:field="*{education}" class="form-control" placeholder="Сведения об образовании">
                                     </div>
+                                    <input type="hidden" th:field="*{id}" />
 
-                                    <input type="submit" class="btn btn-primary btn-md" value="Добавить">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                                    <input type="submit" class="btn btn-primary btn-md" value="Редактировать">
+                                    <button onclick="goBack()" type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
                                 </div>
                             </div>
                         </div>
